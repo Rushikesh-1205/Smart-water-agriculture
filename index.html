@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Water Agriculture</title>
+    <style>
+        body {
+            background-color: #e6ffe6;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        h1 {
+            color: darkgreen;
+        }
+
+        form {
+            background-color: #ccffcc;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+        h2 {
+            color: green;
+        }
+
+        img {
+            margin-top: 20px;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🌱 Smart Water Agriculture System 💧</h1>
+
+    <form action="/predict" method="post">
+
+        <label>Soil Moisture (%):</label><br>
+        <input type="number" name="soil" step="any" required><br>
+
+        <label>Temperature (°C):</label><br>
+        <input type="number" name="temp" step="any" required><br>
+
+        <label>Humidity (%):</label><br>
+        <input type="number" name="humidity" step="any" required><br>
+
+        <label>Rainfall (mm):</label><br>
+        <input type="number" name="rainfall" step="any" required><br><br>
+
+        <input type="submit" value="Check Irrigation">
+
+    </form>
+
+    {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+    {% endif %}
+
+    {% if show_graph %}
+        <h3>Bar Chart</h3>
+        <img src="{{ url_for('static', filename='bar_chart.png') }}">
+
+        <h3>Pie Chart</h3>
+        <img src="{{ url_for('static', filename='pie_chart.png') }}">
+    {% endif %}
+
+</body>
+</html>
